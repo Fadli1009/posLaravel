@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
+    protected $table = 'sales';
+    protected $fillable = ['trans_code', 'trans_date', 'trans_total_price', 'trans_paid', 'trans_change'];
 }

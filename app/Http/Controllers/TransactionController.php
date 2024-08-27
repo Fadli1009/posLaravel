@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\DetailSales;
 use App\Models\Products;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -14,8 +16,11 @@ class TransactionController extends Controller
     public function index()
     {
         $category = Category::all();
-
-        return view('transaction.index', compact('category'));
+        $id_trans = Transaction::max('id');
+        // return $penjualan;
+        $id_trans++;
+        $kode_trans = "SL" . date('dmY') . sprintf('%03s', $id_trans);
+        return view('transaction.index', compact('category', 'kode_trans'));
     }
 
     /**
@@ -31,7 +36,23 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($date_format);
+        $val = Transaction::create([
+            'trans_code' => $request->kode_transaksi,
+            'trans_date' => now(),
+            'trans_paid' => $request->paid,
+            'trans_change' => $request->kembalianDB,
+            'trans_total_price' => $request->total_price
+        ]);
+        foreach ($request->product_id as $key => $product) {
+            DetailSales::create([
+                'sale_id' => $val->id,
+                'product_id' => $request->product_id[$key],
+                'qty' => $request->qty[$key],
+                'sub_total' => $request->sub_total[$key]
+            ]);
+            return redirect()->route('penjualan.index')->with('success', 'Data berhasil disimpan');
+        }
     }
 
     /**
