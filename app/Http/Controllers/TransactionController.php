@@ -7,6 +7,7 @@ use App\Models\DetailSales;
 use App\Models\Products;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TransactionController extends Controller
 {
@@ -51,7 +52,9 @@ class TransactionController extends Controller
                 'qty' => $request->qty[$key],
                 'sub_total' => $request->sub_total[$key]
             ]);
-            return redirect()->route('penjualan.index')->with('success', 'Data berhasil disimpan');
+            // Alert::class
+            Alert::alert('Success', 'Berhasil simpan');
+            return redirect()->route('print')->with('success', 'Data berhasil disimpan');
         }
     }
 
@@ -96,5 +99,10 @@ class TransactionController extends Controller
     {
         $product = Products::find($product_id);
         return response()->json(['product' => $product]);
+    }
+    public function print()
+    {
+
+        return view('transaction.print');
     }
 }

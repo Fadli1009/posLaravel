@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -44,6 +46,8 @@ class UserController extends Controller
             return redirect()->route('user.create')->withInput()->with('error', 'Email sudah digunakan')->withInput();
         }
         User::create($val);
+        toast('data berhasil di simpan', 'success');
+
         return redirect()->route('user.index');
     }
 
