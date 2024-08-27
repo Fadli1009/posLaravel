@@ -22,7 +22,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('logout', [LoginController::class, 'logout']);
     Route::get('get-products/{category_id}', [TransactionController::class, 'getProducts']);
     Route::get('get-productsbyId/{product_id}', [TransactionController::class, 'getProductById']);
-    Route::get('print', [TransactionController::class, 'print'])n   ;
+    Route::get('print', [TransactionController::class, 'print']);
 });
 Route::fallback(function () {
     return view('404-code');
