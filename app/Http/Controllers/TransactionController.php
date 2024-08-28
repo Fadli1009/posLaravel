@@ -38,24 +38,23 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         // dd($date_format);
-        $val = Transaction::create([
-            'trans_code' => $request->kode_transaksi,
-            'trans_date' => now(),
-            'trans_paid' => $request->paid,
-            'trans_change' => $request->kembalianDB,
+        $sales = Transaction::create([
+            'trans_code'    => $request->kode_transaksi,
+            'trans_date'    => now(),
+            'trans_paid'    => $request->paid,
+            'trans_change'  => $request->kembalianDB,
             'trans_total_price' => $request->total_price
         ]);
         foreach ($request->product_id as $key => $product) {
             DetailSales::create([
-                'sale_id' => $val->id,
+                'sale_id' => $sales->id,
                 'product_id' => $request->product_id[$key],
                 'qty' => $request->qty[$key],
                 'sub_total' => $request->sub_total[$key]
             ]);
-            // Alert::class
-            Alert::alert('Success', 'Berhasil simpan');
-            return redirect()->route('print')->with('success', 'Data berhasil disimpan');
         }
+        Alert::alert('Success', 'Berhasil simpan');
+        return redirect()->to('print/' . $sales->id)->with('success', 'Data berhasil disimpan');
     }
 
     /**
@@ -100,9 +99,10 @@ class TransactionController extends Controller
         $product = Products::find($product_id);
         return response()->json(['product' => $product]);
     }
-    public function print()
+    public function print($id_sales)
     {
-
-        return view('transaction.print');
+        $sales = Transaction::where('id', $id_sales)->first();
+        $salesDetail = DetailSales::where('sale_id', $id_sales)->get();
+        return view('transaction.print', compact('sales', 'salesDetail'));
     }
 }
