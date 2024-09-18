@@ -33,10 +33,11 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item {{ Request::is('dashboard')?'menu-open':'' }}">
+                <li class="nav-item {{ Request::is('dashboard') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
@@ -46,14 +47,14 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/dashboard" class="nav-link {{ Request::is('dashboard')?'active':'' }}">
+                            <a href="/dashboard" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dashboard</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item {{ Request::routeIs('user.*')?'menu-open':'' }}">
+                <li class="nav-item {{ Request::routeIs('user.*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
@@ -63,28 +64,29 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="../tables/simple.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Simple Tables</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('user.create') }}"
-                                class="nav-link {{ Request::routeIs('user.create')?'active':'' }}">
+                                class="nav-link {{ Request::routeIs('user.create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tambah User</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('user.index') }}"
-                                class="nav-link {{ Request::routeIs('user.index')?'active':'' }}">
+                                class="nav-link {{ Request::routeIs('user.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>User</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('level.index') }}"
+                                class="nav-link {{ Request::routeIs('level.index') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Levels </p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
-                <li class="nav-item {{ Request::routeIs('category.*')?'menu-open':'' }}">
+                <li class="nav-item {{ Request::routeIs('category.*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
@@ -101,21 +103,21 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('category.create') }}"
-                                class="nav-link {{ Request::routeIs('category.create')?'active':'' }}">
+                                class="nav-link {{ Request::routeIs('category.create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tambah Category</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('category.index') }}"
-                                class="nav-link {{ Request::routeIs('category.index')?'active':'' }}">
+                                class="nav-link {{ Request::routeIs('category.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Categories</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item {{ Request::routeIs('product.*')?'menu-open':'' }}">
+                <li class="nav-item {{ Request::routeIs('product.*') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
@@ -126,21 +128,21 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('product.create') }}"
-                                class="nav-link {{ Request::routeIs('product.create')?'active':'' }}">
+                                class="nav-link {{ Request::routeIs('product.create') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tambah Product</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('product.index') }}"
-                                class="nav-link {{ Request::routeIs('product.index')?'active':'' }}">
+                                class="nav-link {{ Request::routeIs('product.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Data Products</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item {{ Request::routeIs('penjualan.*')?'menu-open':'' }}">
+                <li class="nav-item {{ Request::routeIs('penjualan.*') ? 'menu-open' : '' }}">
                     <a href="" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
@@ -151,7 +153,7 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('penjualan.index') }}"
-                                class="nav-link {{ Request::routeIs('penjualan.index')?'active':'' }}">
+                                class="nav-link {{ Request::routeIs('penjualan.index') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Transaction</p>
                             </a>

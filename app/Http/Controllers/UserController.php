@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Level;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -24,7 +25,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.tambah-user');
+        $level = Level::all();
+        return view('user.tambah-user', compact('level'));
     }
 
     /**
@@ -36,6 +38,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
+            'id_level' => 'required',
             'konfirmasi_password' => 'required'
         ]);
         if ($val['konfirmasi_password'] != $val['password']) {

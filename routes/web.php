@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboarController;
+use App\Http\Controllers\LevelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\TransactionController;
@@ -19,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('category', CategoryController::class);
     Route::resource('product', ProductsController::class);
     Route::resource('penjualan', TransactionController::class);
+    Route::resource('level', LevelController::class);
     Route::get('logout', [LoginController::class, 'logout']);
     Route::get('get-products/{category_id}', [TransactionController::class, 'getProducts']);
     Route::get('get-productsbyId/{product_id}', [TransactionController::class, 'getProductById']);
